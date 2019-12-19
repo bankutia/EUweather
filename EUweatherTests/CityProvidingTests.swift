@@ -21,7 +21,7 @@ class CityProvidingTests: XCTestCase {
     }
 
     func testCityProviderContainsCities() {
-        XCTAssertEqual(25, provider?.cities.count)
+        XCTAssertEqual(26, provider?.cities.count)
         XCTAssertEqual("Budapest", provider?.cities["3054643"]?.name)
     }
 }

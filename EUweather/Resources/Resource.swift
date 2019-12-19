@@ -10,4 +10,22 @@ import Foundation
 
 struct Resource {
     static let euCapitalsJsonFileName = "euCapitals"
+    
+    struct Service {
+        struct Arg {
+            static let cityIds = "id"
+            static let unit = "units"
+            static let apiKey = "APPID"
+        }
+        
+        struct Values {
+            struct Units {
+                static let metric = "metric"
+            }
+        }
+        
+        struct Url {
+            static let currentWeather = "http://api.openweathermap.org/data/2.5/group"
+        }
+    }
 }

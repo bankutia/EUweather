@@ -19,6 +19,11 @@
 		41CD21ED23ABAD080029E13E /* CityProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21EC23ABAD080029E13E /* CityProviding.swift */; };
 		41CD21EF23ABAEEE0029E13E /* CityProvidingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21EE23ABAEEE0029E13E /* CityProvidingTests.swift */; };
 		41CD21F123ABB9530029E13E /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21F023ABB9530029E13E /* Resource.swift */; };
+		41CD21F423ABC8B40029E13E /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21F323ABC8B40029E13E /* WeatherService.swift */; };
+		41CD21F723ABCF8F0029E13E /* WeatherDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21F623ABCF8F0029E13E /* WeatherDAO.swift */; };
+		41CD21F923ABD0450029E13E /* WeatherServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21F823ABD0450029E13E /* WeatherServiceTests.swift */; };
+		41CD21FC23ABE4E30029E13E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21FB23ABE4E30029E13E /* Config.swift */; };
+		41CD21FE23ABE97A0029E13E /* HttpStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21FD23ABE97A0029E13E /* HttpStatusCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,11 @@
 		41CD21EC23ABAD080029E13E /* CityProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProviding.swift; sourceTree = "<group>"; };
 		41CD21EE23ABAEEE0029E13E /* CityProvidingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProvidingTests.swift; sourceTree = "<group>"; };
 		41CD21F023ABB9530029E13E /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		41CD21F323ABC8B40029E13E /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		41CD21F623ABCF8F0029E13E /* WeatherDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDAO.swift; sourceTree = "<group>"; };
+		41CD21F823ABD0450029E13E /* WeatherServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceTests.swift; sourceTree = "<group>"; };
+		41CD21FB23ABE4E30029E13E /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		41CD21FD23ABE97A0029E13E /* HttpStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpStatusCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				41CD21DD23AB990E0029E13E /* DI */,
+				41CD21FA23ABE4CB0029E13E /* Config */,
+				41CD21F223ABC88E0029E13E /* Service */,
 				41CD21E823ABAC590029E13E /* BusinessModel */,
 				41CD21E023AB99C30029E13E /* SharedUI */,
 				41CD21D923AB98C40029E13E /* UseCase */,
@@ -103,6 +115,7 @@
 		41CD21BA23AB95E80029E13E /* EUweatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				41CD21F823ABD0450029E13E /* WeatherServiceTests.swift */,
 				41CD21EE23ABAEEE0029E13E /* CityProvidingTests.swift */,
 				41CD21D723AB97A20029E13E /* Test.storyboard */,
 				41CD21BD23AB95E80029E13E /* Info.plist */,
@@ -156,6 +169,7 @@
 		41CD21E823ABAC590029E13E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				41CD21F523ABCA710029E13E /* Weather */,
 				41CD21E923ABAC7F0029E13E /* CityProviding */,
 			);
 			path = BusinessModel;
@@ -168,6 +182,31 @@
 				41CD21EC23ABAD080029E13E /* CityProviding.swift */,
 			);
 			path = CityProviding;
+			sourceTree = "<group>";
+		};
+		41CD21F223ABC88E0029E13E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				41CD21FD23ABE97A0029E13E /* HttpStatusCode.swift */,
+				41CD21F623ABCF8F0029E13E /* WeatherDAO.swift */,
+				41CD21F323ABC8B40029E13E /* WeatherService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		41CD21F523ABCA710029E13E /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		41CD21FA23ABE4CB0029E13E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				41CD21FB23ABE4E30029E13E /* Config.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,10 +314,14 @@
 			files = (
 				41CD21DF23AB993F0029E13E /* DI.swift in Sources */,
 				41CD21DC23AB98EF0029E13E /* AppLaunching.swift in Sources */,
+				41CD21FC23ABE4E30029E13E /* Config.swift in Sources */,
 				41CD21ED23ABAD080029E13E /* CityProviding.swift in Sources */,
+				41CD21FE23ABE97A0029E13E /* HttpStatusCode.swift in Sources */,
 				41CD21F123ABB9530029E13E /* Resource.swift in Sources */,
 				41CD21EB23ABACBF0029E13E /* City.swift in Sources */,
 				41CD21A523AB95E60029E13E /* AppDelegate.swift in Sources */,
+				41CD21F423ABC8B40029E13E /* WeatherService.swift in Sources */,
+				41CD21F723ABCF8F0029E13E /* WeatherDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41CD21F923ABD0450029E13E /* WeatherServiceTests.swift in Sources */,
 				41CD21EF23ABAEEE0029E13E /* CityProvidingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -424,6 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -564,6 +610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;

@@ -15,11 +15,10 @@ protocol AppLaunching {
 
 class AppLaunchingFactory {
     
-    static let configurationKey = "Configuration"
     static let testConfigurationName = "UnitTest"
     
     class func getInstance() -> AppLaunching {
-        guard let config = Bundle.main.object(forInfoDictionaryKey: configurationKey) as? String, config == testConfigurationName else {
+        guard Config.buildConfiguration == testConfigurationName else {
             return AppLauncher()
         }
         
