@@ -11,10 +11,14 @@
 		41CD21AC23AB95E60029E13E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD21AA23AB95E60029E13E /* Main.storyboard */; };
 		41CD21AE23AB95E80029E13E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CD21AD23AB95E80029E13E /* Assets.xcassets */; };
 		41CD21B123AB95E80029E13E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD21AF23AB95E80029E13E /* LaunchScreen.storyboard */; };
-		41CD21BC23AB95E80029E13E /* EUweatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21BB23AB95E80029E13E /* EUweatherTests.swift */; };
 		41CD21D823AB97A20029E13E /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD21D723AB97A20029E13E /* Test.storyboard */; };
 		41CD21DC23AB98EF0029E13E /* AppLaunching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21DB23AB98EF0029E13E /* AppLaunching.swift */; };
 		41CD21DF23AB993F0029E13E /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21DE23AB993F0029E13E /* DI.swift */; };
+		41CD21E723ABAC2F0029E13E /* euCapitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 41CD21E623ABAC2F0029E13E /* euCapitals.json */; };
+		41CD21EB23ABACBF0029E13E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21EA23ABACBF0029E13E /* City.swift */; };
+		41CD21ED23ABAD080029E13E /* CityProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21EC23ABAD080029E13E /* CityProviding.swift */; };
+		41CD21EF23ABAEEE0029E13E /* CityProvidingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21EE23ABAEEE0029E13E /* CityProvidingTests.swift */; };
+		41CD21F123ABB9530029E13E /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD21F023ABB9530029E13E /* Resource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +39,15 @@
 		41CD21B023AB95E80029E13E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CD21B223AB95E80029E13E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41CD21B723AB95E80029E13E /* EUweatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EUweatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		41CD21BB23AB95E80029E13E /* EUweatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUweatherTests.swift; sourceTree = "<group>"; };
 		41CD21BD23AB95E80029E13E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41CD21D723AB97A20029E13E /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		41CD21DB23AB98EF0029E13E /* AppLaunching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLaunching.swift; sourceTree = "<group>"; };
 		41CD21DE23AB993F0029E13E /* DI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
+		41CD21E623ABAC2F0029E13E /* euCapitals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = euCapitals.json; sourceTree = "<group>"; };
+		41CD21EA23ABACBF0029E13E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		41CD21EC23ABAD080029E13E /* CityProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProviding.swift; sourceTree = "<group>"; };
+		41CD21EE23ABAEEE0029E13E /* CityProvidingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProvidingTests.swift; sourceTree = "<group>"; };
+		41CD21F023ABB9530029E13E /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +90,10 @@
 			isa = PBXGroup;
 			children = (
 				41CD21DD23AB990E0029E13E /* DI */,
+				41CD21E823ABAC590029E13E /* BusinessModel */,
 				41CD21E023AB99C30029E13E /* SharedUI */,
 				41CD21D923AB98C40029E13E /* UseCase */,
+				41CD21E123ABAB3F0029E13E /* Resources */,
 				41CD21A423AB95E60029E13E /* AppDelegate.swift */,
 				41CD21B223AB95E80029E13E /* Info.plist */,
 			);
@@ -93,8 +103,8 @@
 		41CD21BA23AB95E80029E13E /* EUweatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				41CD21EE23ABAEEE0029E13E /* CityProvidingTests.swift */,
 				41CD21D723AB97A20029E13E /* Test.storyboard */,
-				41CD21BB23AB95E80029E13E /* EUweatherTests.swift */,
 				41CD21BD23AB95E80029E13E /* Info.plist */,
 			);
 			path = EUweatherTests;
@@ -132,6 +142,32 @@
 				41CD21AF23AB95E80029E13E /* LaunchScreen.storyboard */,
 			);
 			path = SharedUI;
+			sourceTree = "<group>";
+		};
+		41CD21E123ABAB3F0029E13E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				41CD21F023ABB9530029E13E /* Resource.swift */,
+				41CD21E623ABAC2F0029E13E /* euCapitals.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		41CD21E823ABAC590029E13E /* BusinessModel */ = {
+			isa = PBXGroup;
+			children = (
+				41CD21E923ABAC7F0029E13E /* CityProviding */,
+			);
+			path = BusinessModel;
+			sourceTree = "<group>";
+		};
+		41CD21E923ABAC7F0029E13E /* CityProviding */ = {
+			isa = PBXGroup;
+			children = (
+				41CD21EA23ABACBF0029E13E /* City.swift */,
+				41CD21EC23ABAD080029E13E /* CityProviding.swift */,
+			);
+			path = CityProviding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +255,7 @@
 				41CD21AE23AB95E80029E13E /* Assets.xcassets in Resources */,
 				41CD21D823AB97A20029E13E /* Test.storyboard in Resources */,
 				41CD21AC23AB95E60029E13E /* Main.storyboard in Resources */,
+				41CD21E723ABAC2F0029E13E /* euCapitals.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +275,9 @@
 			files = (
 				41CD21DF23AB993F0029E13E /* DI.swift in Sources */,
 				41CD21DC23AB98EF0029E13E /* AppLaunching.swift in Sources */,
+				41CD21ED23ABAD080029E13E /* CityProviding.swift in Sources */,
+				41CD21F123ABB9530029E13E /* Resource.swift in Sources */,
+				41CD21EB23ABACBF0029E13E /* City.swift in Sources */,
 				41CD21A523AB95E60029E13E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,7 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CD21BC23AB95E80029E13E /* EUweatherTests.swift in Sources */,
+				41CD21EF23ABAEEE0029E13E /* CityProvidingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

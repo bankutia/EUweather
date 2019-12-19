@@ -14,3 +14,10 @@ extension AppLaunchingInjected {
         AppLaunchingFactory.getInstance()
     }
 }
+
+protocol CityProvidingInjected {}
+extension CityProvidingInjected {
+    var cityProvider: CityProviding {
+        CityProviderFactory.getInstance()
+    }
+}
