@@ -26,6 +26,7 @@ struct Resource {
         
         struct Url {
             static let currentWeather = "http://api.openweathermap.org/data/2.5/group"
+            static let imageStore = "http://openweathermap.org/img/wn"
         }
     }
     

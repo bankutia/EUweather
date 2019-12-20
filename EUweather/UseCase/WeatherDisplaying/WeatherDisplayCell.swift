@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class WeatherDisplayCell: UITableViewCell {
     
@@ -24,7 +25,16 @@ final class WeatherDisplayCell: UITableViewCell {
     func set(viewModel: ViewModel) {
         labelCity.text = viewModel.cityName
         labelDegree.text = viewModel.degree.toDisplayString()
-        
+        imageWeather.image = nil
+        if let imageUrl = URL(string: "\(Resource.Service.Url.imageStore)/\(viewModel.weatherImageFileName.imageFileSpec)") {
+            imageWeather.kf.setImage(with: imageUrl)
+        }
+    }
+}
+
+private extension String {
+    var imageFileSpec: String {
+        "\(self)@2x.png"
     }
 }
 
