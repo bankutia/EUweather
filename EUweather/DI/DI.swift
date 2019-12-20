@@ -21,3 +21,24 @@ extension CityProvidingInjected {
         CityProviderFactory.getInstance()
     }
 }
+
+protocol WeatherServiceInjecting {}
+extension WeatherServiceInjecting {
+    func inject() -> WeatherService {
+        WeatherServiceFactory.getInstance()
+    }
+}
+
+protocol WeatherProviderInjecting {}
+extension WeatherProviderInjecting {
+    func inject() -> WeatherProviding {
+        WeatherProviderFactory.getInstance()
+    }
+}
+
+protocol UserDefaultsInjecting {}
+extension UserDefaultsInjecting {
+    func inject() -> UserDefaults {
+        UserDefaultsFactory.getInstance()
+    }
+}

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CityProviding {
-    var cities: CityWeatherCodes { get }
+    var cities: OpenWeatherCityCodes { get }
 }
 
 final class CityProviderFactory {
@@ -20,7 +20,7 @@ final class CityProviderFactory {
 }
 
 private final class CityProvider: CityProviding {
-    var cities: CityWeatherCodes
+    var cities: OpenWeatherCityCodes
     
     static let sharedProvider = CityProvider()
     
@@ -29,7 +29,7 @@ private final class CityProvider: CityProviding {
         if let path = Bundle.main.path(forResource: Resource.euCapitalsJsonFileName, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                cities = try JSONDecoder().decode(CityWeatherCodes.self, from: data)
+                cities = try JSONDecoder().decode(OpenWeatherCityCodes.self, from: data)
               } catch {
                    fatalError("Invalid embeded euCapitals.json")
               }

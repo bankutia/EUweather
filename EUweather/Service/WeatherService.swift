@@ -13,7 +13,7 @@ enum WeatherServiceError: Error {
 }
 
 protocol WeatherService {
-    func getCurrentWeather(by cityIds: [CityWeatherCode], completion: @escaping (Result<CurrentWeatherDAO, Error>) -> Void)
+    func getCurrentWeather(by cityIds: [OpenWeatherCityCode], completion: @escaping (Result<CurrentWeatherDAO, Error>) -> Void)
 }
 
 class WeatherServiceFactory {
@@ -32,8 +32,12 @@ private final class WeatherServiceImpl: WeatherService {
         return URLSession(configuration: config)
     }()
 
-    func getCurrentWeather(by cityIds: [CityWeatherCode], completion: @escaping (Result<CurrentWeatherDAO, Error>) -> Void) {
-        print(Resource.Service.Url.currentWeather + getQueryParams(by: cityIds))
+    func getCurrentWeather(by cityIds: [OpenWeatherCityCode], completion: @escaping (Result<CurrentWeatherDAO, Error>) -> Void) {
+        guard cityIds.isNotEmpty else {
+            completion(.success(CurrentWeatherDAO.empty))
+            return
+        }
+        
         let url = URL(string: Resource.Service.Url.currentWeather + getQueryParams(by: cityIds))!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -64,7 +68,7 @@ private final class WeatherServiceImpl: WeatherService {
         task.resume()
     }
     
-    private func getQueryParams(by cityIds: [CityWeatherCode]) -> String {
+    private func getQueryParams(by cityIds: [OpenWeatherCityCode]) -> String {
         "?\(Resource.Service.Arg.cityIds)=\(cityIds.joined(separator: ","))"
         + "&\(Resource.Service.Arg.unit)=\(Resource.Service.Values.Units.metric)"
         + "&\(Resource.Service.Arg.apiKey)=\(Config.openWeatherApiKey)"

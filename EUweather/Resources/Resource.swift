@@ -28,4 +28,12 @@ struct Resource {
             static let currentWeather = "http://api.openweathermap.org/data/2.5/group"
         }
     }
+    
+    struct UserDefault {
+        static let observingCitiesKey = "observing_cities"
+    }
+    
+    struct WeatherIcon {
+        static let defaultName = "03d.png"
+    }
 }

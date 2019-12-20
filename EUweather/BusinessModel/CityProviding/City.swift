@@ -9,10 +9,12 @@
 import Foundation
 
 
-struct City: Codable {
+struct City: Codable, Equatable {
     var name: String
     var countryCode: String
+    
+    static let empty = City(name: "", countryCode: "")
 }
 
-typealias CityWeatherCode = String
-typealias CityWeatherCodes = Dictionary<CityWeatherCode, City>
+typealias OpenWeatherCityCode = String
+typealias OpenWeatherCityCodes = Dictionary<OpenWeatherCityCode, City>
