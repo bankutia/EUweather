@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  EUweather
+
+  Created by ALi on 2019. 12. 20..
+  Copyright © 2019. ALi. All rights reserved.
+*/
+
+"weatherDisplay_title" = "Current weather";
+"weatherDisplay_emptyBackground_title" = "Press + sign up right to add cities.";

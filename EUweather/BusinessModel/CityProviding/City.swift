@@ -8,12 +8,14 @@
 
 import Foundation
 
+typealias CountryCode = String
 
 struct City: Codable, Equatable {
+    var code: OpenWeatherCityCode
     var name: String
-    var countryCode: String
+    var countryCode: CountryCode
     
-    static let empty = City(name: "", countryCode: "")
+    static let empty = City(code: "", name: "", countryCode: "")
 }
 
 typealias OpenWeatherCityCode = String

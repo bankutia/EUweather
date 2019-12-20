@@ -19,6 +19,11 @@ final class CityProviderFactory {
     }
 }
 
+private struct OpenWeatherCityCodesJSON: Codable {
+    var name: String
+    var countryCode: CountryCode
+}
+
 private final class CityProvider: CityProviding {
     var cities: OpenWeatherCityCodes
     
@@ -29,7 +34,11 @@ private final class CityProvider: CityProviding {
         if let path = Bundle.main.path(forResource: Resource.euCapitalsJsonFileName, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                cities = try JSONDecoder().decode(OpenWeatherCityCodes.self, from: data)
+                let cities = try JSONDecoder().decode(Dictionary<OpenWeatherCityCode,OpenWeatherCityCodesJSON>.self, from: data)
+                self.cities = .init()
+                for (key, value) in cities {
+                    self.cities[key] = City(code: key, name: value.name, countryCode: value.countryCode)
+                }
               } catch {
                    fatalError("Invalid embeded euCapitals.json")
               }

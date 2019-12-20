@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="94" id="PRi-HO-wlj" customClass="WeatherDisplayCell" customModule="EUweather" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherDisplayCell" rowHeight="94" id="PRi-HO-wlj" customClass="WeatherDisplayCell" customModule="EUweather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PRi-HO-wlj" id="Ijf-uJ-qPO">
@@ -52,7 +52,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="designWeatherImage" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-7a-FyE">
                                                     <rect key="frame" x="20" y="0.0" width="75" height="75"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="75" id="Sny-8B-167"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="75" id="Sny-8B-167"/>
                                                         <constraint firstAttribute="width" constant="75" id="zhw-ys-Lnc"/>
                                                     </constraints>
                                                 </imageView>
@@ -64,14 +64,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="tf5-50-vuJ" secondAttribute="bottom" constant="8" id="5FI-6Z-Sgh"/>
+                                                <constraint firstAttribute="bottom" secondItem="tf5-50-vuJ" secondAttribute="bottom" priority="999" constant="8" id="5FI-6Z-Sgh"/>
                                                 <constraint firstItem="mOa-7a-FyE" firstAttribute="leading" secondItem="Ijf-uJ-qPO" secondAttribute="leading" constant="20" symbolic="YES" id="JW4-Ug-AnQ"/>
                                                 <constraint firstItem="1ss-XM-lTQ" firstAttribute="leading" secondItem="tf5-50-vuJ" secondAttribute="trailing" constant="12" id="MnI-Qe-FEB"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="1ss-XM-lTQ" secondAttribute="trailing" id="ZRi-98-t9u"/>
                                                 <constraint firstItem="tf5-50-vuJ" firstAttribute="leading" secondItem="Ijf-uJ-qPO" secondAttribute="leadingMargin" id="bFc-lO-YOs"/>
-                                                <constraint firstItem="mOa-7a-FyE" firstAttribute="top" secondItem="Ijf-uJ-qPO" secondAttribute="top" id="cg3-b2-DEE"/>
+                                                <constraint firstItem="mOa-7a-FyE" firstAttribute="top" secondItem="Ijf-uJ-qPO" secondAttribute="top" priority="999" id="cg3-b2-DEE"/>
                                                 <constraint firstItem="1ss-XM-lTQ" firstAttribute="centerY" secondItem="Ijf-uJ-qPO" secondAttribute="centerY" id="dWx-Tn-Qx9"/>
-                                                <constraint firstItem="tf5-50-vuJ" firstAttribute="top" secondItem="mOa-7a-FyE" secondAttribute="bottom" constant="-12" id="oYB-4l-D3B"/>
+                                                <constraint firstItem="tf5-50-vuJ" firstAttribute="top" secondItem="mOa-7a-FyE" secondAttribute="bottom" priority="999" constant="-12" id="oYB-4l-D3B"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -84,6 +84,7 @@
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="k5x-1P-ofe" id="Qva-GT-q80"/>
+                                    <outlet property="delegate" destination="k5x-1P-ofe" id="lfC-6l-tvk"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -97,9 +98,14 @@
                         <viewLayoutGuide key="safeArea" id="mcR-Qg-myO"/>
                     </view>
                     <navigationItem key="navigationItem" title="current weather" id="dtO-Kb-vdm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dzg-H9-wBa"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dzg-H9-wBa">
+                            <connections>
+                                <segue destination="blm-hq-Ust" kind="presentation" id="KSP-HN-06C"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="labelEmptyBG" destination="g19-NG-T7S" id="K8a-Tn-eE9"/>
                         <outlet property="tableView" destination="eXO-N3-Zgn" id="yCa-bU-qch"/>
                         <outlet property="viewEmptyBG" destination="KIA-lT-8g5" id="Wg6-g9-NWx"/>
                     </connections>
@@ -126,6 +132,14 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="660.86956521739137" y="156.69642857142856"/>
+        </scene>
+        <!--CitySelecting-->
+        <scene sceneID="0De-PO-phy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CitySelecting" id="blm-hq-Ust" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qhf-UQ-cb0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1384" y="-90"/>
         </scene>
     </scenes>
     <resources>
