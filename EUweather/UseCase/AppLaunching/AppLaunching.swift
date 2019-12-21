@@ -29,7 +29,11 @@ class AppLaunchingFactory {
 private class AppLauncher: AppLaunching {
     func didFinishLunchingWithOptions(_ launchOptions: [UIApplication.LaunchOptionsKey : Any]?, _ application: UIApplication, appDelegate: AppDelegate) {
         
-        // do any customization...
+        if Config.buildConfiguration == "UITest" {
+            let mockedUserDefaults = UserDefaults(suiteName: "uiTest")
+            mockedUserDefaults?.removePersistentDomain(forName: "uiTest")
+            UserDefaultsFactory.mockedInstance = mockedUserDefaults
+        }
     }
 }
 
