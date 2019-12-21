@@ -28,6 +28,8 @@ final class WeatherDisplayViewModel: WeatherProviderInjecting {
     }
     
     func addCity(by cityCode: OpenWeatherCityCode) {
+        guard observingCityCodes.notContains(cityCode) else { return }
+        
         observingCityCodes.insert(cityCode, at: 0)
         provider.getCurrentWeather(by: [cityCode]) { [weak self] result in
             guard case .success(let weatherData) = result, let newCityWeather = weatherData.first else { return }

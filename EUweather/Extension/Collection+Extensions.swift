@@ -13,3 +13,9 @@ extension RandomAccessCollection {
         return !isEmpty
     }
 }
+
+extension Array where Element: Equatable {
+    func notContains(_ element: Element) -> Bool {
+        !contains(element)
+    }
+}
