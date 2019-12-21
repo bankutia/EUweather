@@ -51,7 +51,7 @@ final class WeatherDisplayViewController: UIViewController, ValueObserver {
             let citySelector = navigator.viewControllers.first as? CitySelectingViewController else { return }
         
         citySelector.args.disabledCityCodes = cellViewModels.map{ $0.cityCode }
-        citySelector.args.citySelected = { cityCode in
+        citySelector.args.citySelectedAction = { cityCode in
             self.viewModel.addCity(by: cityCode)
         }
     }

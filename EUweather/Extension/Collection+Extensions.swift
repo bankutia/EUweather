@@ -12,14 +12,4 @@ extension RandomAccessCollection {
     var isNotEmpty: Bool {
         return !isEmpty
     }
-    
-    func notContains(where predicate: (Element) throws -> Bool) rethrows -> Bool {
-        return try !contains(where: predicate)
-    }
-}
-
-extension Array where Element : Equatable {
-    func notContains(_ element: Element) -> Bool {
-        return !contains(element)
-    }
 }

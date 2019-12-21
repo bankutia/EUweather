@@ -31,7 +31,7 @@ private extension City {
     }
 }
 
-private extension CountryCode {
+private extension String {
     func flagUnicodeCharacter() -> String {
         let base : UInt32 = 127397
         var s = ""

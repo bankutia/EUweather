@@ -50,7 +50,8 @@ private final class WeatherServiceImpl: WeatherService {
             
             let httpResponse = response as? HTTPURLResponse
             guard let statusCode = httpResponse?.statusCode, statusCode == HTTPStatusCode.ok.rawValue, let data = data else {
-                completion(.failure(WeatherServiceError.serviceError(String(httpResponse?.statusCode ?? HTTPStatusCode.internalServerError.rawValue))))
+                completion(.failure(WeatherServiceError.serviceError(String(httpResponse?.statusCode
+                    ?? HTTPStatusCode.internalServerError.rawValue))))
                 return
             }
             

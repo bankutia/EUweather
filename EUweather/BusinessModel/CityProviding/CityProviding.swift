@@ -21,7 +21,7 @@ final class CityProviderFactory {
 
 private struct OpenWeatherCityCodesJSON: Codable {
     var name: String
-    var countryCode: CountryCode
+    var countryCode: String
 }
 
 private final class CityProvider: CityProviding {

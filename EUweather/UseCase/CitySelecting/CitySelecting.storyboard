@@ -98,7 +98,11 @@
                         <viewLayoutGuide key="safeArea" id="lye-Qo-1GA"/>
                     </view>
                     <navigationItem key="navigationItem" title="select a city" id="PUz-GP-cC1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="fvH-JN-uf0"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="fvH-JN-uf0">
+                            <connections>
+                                <action selector="actionCancel:" destination="Sgm-fZ-ACd" id="Xe5-cC-HnN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="qhk-Ib-CSU" id="7ki-3j-lXl"/>

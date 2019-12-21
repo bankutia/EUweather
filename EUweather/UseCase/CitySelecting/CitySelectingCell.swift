@@ -20,8 +20,8 @@ final class CitySelectingCell: UITableViewCell {
         var isSelectable: Bool
     }
     
-    let unselectableRowAlpha: CGFloat = 0.35
-    let selectableRowAlpha: CGFloat = 1.0
+    private let unselectableRowAlpha: CGFloat = 0.35
+    private let selectableRowAlpha: CGFloat = 1.0
     func set(viewModel: ViewModel) {
         labelFlag.text = viewModel.flag
         labelName.text = viewModel.cityName

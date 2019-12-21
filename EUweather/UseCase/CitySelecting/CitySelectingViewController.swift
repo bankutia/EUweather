@@ -12,7 +12,7 @@ final class CitySelectingViewController: UIViewController, ValueObserver {
     
     struct Args {
         var disabledCityCodes: [OpenWeatherCityCode] = .init()
-        var citySelected: ((OpenWeatherCityCode) -> Void)? = nil
+        var citySelectedAction: ((OpenWeatherCityCode) -> Void)? = nil
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -29,6 +29,8 @@ final class CitySelectingViewController: UIViewController, ValueObserver {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = NSLocalizedString("citySelecting_title", comment: "")
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         
@@ -38,6 +40,10 @@ final class CitySelectingViewController: UIViewController, ValueObserver {
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func actionCancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -62,7 +68,7 @@ extension CitySelectingViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let cellViewModel = cellViewModels[indexPath.row]
         if cellViewModel.isSelectable {
-            args.citySelected?(cellViewModel.cityCode)
+            args.citySelectedAction?(cellViewModel.cityCode)
             dismiss(animated: true, completion: nil)
         }
     }

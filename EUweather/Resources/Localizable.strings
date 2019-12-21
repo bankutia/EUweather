@@ -8,3 +8,4 @@
 
 "weatherDisplay_title" = "Current weather";
 "weatherDisplay_emptyBackground_title" = "Press + sign up right to add cities.";
+"citySelecting_title" = "Choose a city";

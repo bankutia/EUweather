@@ -25,9 +25,11 @@ final class WeatherDisplayCell: UITableViewCell {
     func set(viewModel: ViewModel) {
         labelCity.text = viewModel.cityName
         labelDegree.text = viewModel.degree.toDisplayString()
-        imageWeather.image = nil
-        if let imageUrl = URL(string: "\(Resource.Service.Url.imageStore)/\(viewModel.weatherImageFileName.imageFileSpec)") {
-            imageWeather.kf.setImage(with: imageUrl)
+        if imageWeather != nil {
+            imageWeather.image = nil
+            if let imageUrl = URL(string: "\(Resource.Service.Url.imageStore)/\(viewModel.weatherImageFileName.imageFileSpec)") {
+                imageWeather.kf.setImage(with: imageUrl)
+            }
         }
     }
 }
@@ -40,8 +42,6 @@ private extension String {
 
 private extension Double {
     func toDisplayString() -> String {
-//        if self == Double(round(self)) {
-            return String(self)
-//        }
+        "\(Int(self.rounded()))\u{00b0}"
     }
 }
