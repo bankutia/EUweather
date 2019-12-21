@@ -28,7 +28,9 @@ final class WeatherDisplayCell: UITableViewCell {
         if imageWeather != nil {
             imageWeather.image = nil
             if let imageUrl = URL(string: "\(Resource.Service.Url.imageStore)/\(viewModel.weatherImageFileName.imageFileSpec)") {
-                imageWeather.kf.setImage(with: imageUrl)
+                imageWeather.kf.setImage(with: imageUrl,
+                                         placeholder: UIImage(),
+                                         options: [.transition(.fade(1.0))])
             }
         }
     }
