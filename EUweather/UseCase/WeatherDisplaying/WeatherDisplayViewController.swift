@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WeatherDisplayViewController: UIViewController, ValueObserver {
+final class WeatherDisplayViewController: UIViewController, ValueObserver, AppStateChangeNotifierInjected {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var viewEmptyBG: UIView!
@@ -43,6 +43,12 @@ final class WeatherDisplayViewController: UIViewController, ValueObserver {
                 }
                 self.reloadData()
             }
+        }
+        
+        appStateChangeNotifier.state.addObserver(self) { [weak self] appState in
+            guard appState == .didBecomeActive, self?.appStateChangeNotifier.previousState != .didFinishLaunching else { return }
+            
+            self?.viewModel.reload()
         }
     }
 

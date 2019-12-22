@@ -20,6 +20,10 @@ final class WeatherDisplayViewModel: WeatherProviderInjecting {
     }()
     
     init() {
+        reload()
+    }
+    
+    func reload() {
         provider.getCurrentWeather(by: observingCityCodes) { [weak self] result in
             guard case .success(let weatherData) = result else { return }
             

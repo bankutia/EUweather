@@ -42,3 +42,10 @@ extension UserDefaultsInjecting {
         UserDefaultsFactory.getInstance()
     }
 }
+
+protocol AppStateChangeNotifierInjected {}
+extension AppStateChangeNotifierInjected {
+    var appStateChangeNotifier: AppStateChangeNotifying {
+        AppStateChangeNofityerFactory.getInstance()
+    }
+}
