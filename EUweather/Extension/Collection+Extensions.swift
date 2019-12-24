@@ -19,3 +19,11 @@ extension Array where Element: Equatable {
         !contains(element)
     }
 }
+
+extension Array {
+    func element(at index: Int) -> Element? {
+        guard index < count, index >= 0 else { return nil }
+        
+        return self[index]
+    }
+}

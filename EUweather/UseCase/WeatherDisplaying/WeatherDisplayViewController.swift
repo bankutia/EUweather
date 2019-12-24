@@ -39,9 +39,8 @@ final class WeatherDisplayViewController: UIViewController, ValueObserver, AppSt
                     self.tableView.backgroundView = self.viewEmptyBG
                 } else {
                     self.tableView.backgroundView = nil
-                    self.cellViewModels = weatherData.map{ $0.toViewModel() }
                 }
-                self.reloadData()
+                self.reloadData(with: weatherData.map{ $0.toViewModel() })
             }
         }
         
@@ -62,11 +61,32 @@ final class WeatherDisplayViewController: UIViewController, ValueObserver, AppSt
         }
     }
     
-    private func reloadData() {
-        if !isManualUpdate {
-            tableView.reloadData()
+    private func reloadData(with viewModels: [WeatherDisplayCell.ViewModel]) {
+        guard !isManualUpdate else {
+            isManualUpdate = false
+            return
         }
-        isManualUpdate = false
+
+        if viewModels.isEmpty {
+            cellViewModels = .init()
+            tableView.reloadData()
+            return
+        }
+        
+        var cellViewModelIndex = cellViewModels.count - 1
+        viewModels.reversed().forEach {
+            if let cellViewModel = cellViewModels.element(at: cellViewModelIndex), cellViewModel.cityCode == $0.cityCode {
+                if let cell = tableView.cellForRow(at: IndexPath(row: cellViewModelIndex, section: 0)) as? WeatherDisplayCell {
+                    cell.set(viewModel: $0)
+                }
+                cellViewModelIndex -= 1
+            } else {
+                tableView.beginUpdates()
+                cellViewModels.insert($0, at: 0)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                tableView.endUpdates()
+            }
+        }
     }
     
     private func setManualUpdate() {

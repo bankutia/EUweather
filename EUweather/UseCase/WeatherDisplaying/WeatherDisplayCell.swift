@@ -26,7 +26,6 @@ final class WeatherDisplayCell: UITableViewCell {
         labelCity.text = viewModel.cityName
         labelDegree.text = viewModel.degree.toDisplayString()
         if imageWeather != nil {
-            imageWeather.image = nil
             if let imageUrl = URL(string: "\(Resource.Service.Url.imageStore)/\(viewModel.weatherImageFileName.imageFileSpec)") {
                 imageWeather.kf.setImage(with: imageUrl,
                                          placeholder: UIImage(),
