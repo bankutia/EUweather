@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 enum WeatherServiceError: Error {
     case serviceError(String), invalidJson(String)
@@ -25,6 +26,8 @@ class WeatherServiceFactory {
 
 private final class WeatherServiceImpl: WeatherService {
     
+    var disposeBag: Set<AnyCancellable> = .init()
+    
     lazy private var session: URLSession = {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = 1.5
@@ -38,40 +41,46 @@ private final class WeatherServiceImpl: WeatherService {
             return
         }
         
-        let url = URL(string: Resource.Service.Url.currentWeather + getQueryParams(by: cityIds))!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
+        Publishers.MergeMany(
+            cityIds.map({ self.getCityWeather(by: $0) })
+        ).collect().sink { result in
+            if case .failure(let error) = result {
                 completion(.failure(error))
-                return
             }
-            
-            let httpResponse = response as? HTTPURLResponse
-            guard let statusCode = httpResponse?.statusCode, statusCode == HTTPStatusCode.ok.rawValue, let data = data else {
-                completion(.failure(WeatherServiceError.serviceError(String(httpResponse?.statusCode
-                    ?? HTTPStatusCode.internalServerError.rawValue))))
-                return
-            }
-            
-            if let currentWeatherDAO = try? JSONDecoder().decode(CurrentWeatherDAO.self, from: data) {
-                completion(.success(currentWeatherDAO))
-            } else {
-                if let responseString = String(data: data, encoding: .utf8) {
-                    completion(.failure(WeatherServiceError.invalidJson(responseString)))
-                } else {
-                    completion(.failure(WeatherServiceError.serviceError(String(HTTPStatusCode.internalServerError.rawValue))))
-                }
-            }
-        }
-        
-        task.resume()
+        } receiveValue: { weatherReports in
+            completion(.success(.init(list: weatherReports)))
+        }.store(in: &disposeBag)
     }
     
-    private func getQueryParams(by cityIds: [OpenWeatherCityCode]) -> String {
-        "?\(Resource.Service.Arg.cityIds)=\(cityIds.joined(separator: ","))"
-        + "&\(Resource.Service.Arg.unit)=\(Resource.Service.Values.Units.metric)"
-        + "&\(Resource.Service.Arg.apiKey)=\(Config.openWeatherApiKey)"
+    private func getCityWeather(by cityId: String) -> AnyPublisher<WeatherReportDAO, Error> {
+        session.dataTaskPublisher(for: buildCityWeatherQueryUrl(by: cityId)).tryMap({ (data: Data, response: URLResponse) in
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == HTTPStatusCode.ok.rawValue else {
+                throw WeatherServiceError.serviceError(String((response as? HTTPURLResponse)?.statusCode ?? HTTPStatusCode.internalServerError.rawValue))
+            }
+            
+            if let weatherReportDAO = try? JSONDecoder().decode(WeatherReportDAO.self, from: data) {
+                return weatherReportDAO
+            } else {
+                if let responseString = String(data: data, encoding: .utf8) {
+                    throw WeatherServiceError.invalidJson(responseString)
+                } else {
+                    throw WeatherServiceError.serviceError(String(HTTPStatusCode.internalServerError.rawValue))
+                }
+            }
+        }).mapError({ $0 }).eraseToAnyPublisher()
+    }
+    
+    private func buildCityWeatherQueryUrl(by cityId: String) -> URL {
+        guard var urlComponents = URLComponents(string: Resource.Service.Url.currentWeather) else {
+            fatalError("Invalid resource for url: requesting current weather!")
+        }
+        
+        urlComponents.queryItems = [
+            .init(name: Resource.Service.Arg.cityIds, value: cityId),
+            .init(name: Resource.Service.Arg.unit, value: Resource.Service.Values.Units.metric),
+            .init(name: Resource.Service.Arg.apiKey, value: Config.openWeatherApiKey)
+        ]
+        
+        return urlComponents.url!
     }
 }

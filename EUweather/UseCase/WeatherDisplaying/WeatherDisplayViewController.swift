@@ -118,17 +118,36 @@ extension WeatherDisplayViewController: UITableViewDelegate {
         true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            setManualUpdate()
-            let cellViewModel = cellViewModels[indexPath.row]
-            viewModel.removeCity(by: cellViewModel.cityCode)
-            cellViewModels.remove(at: indexPath.row)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: nil, handler: { [weak self] _, _, action in
+            guard let self = self else { return }
+            
+            self.setManualUpdate()
+            let cellViewModel = self.cellViewModels[indexPath.row]
+            self.cellViewModels.remove(at: indexPath.row)
             tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .left)
             tableView.endUpdates()
-        }
+            self.viewModel.removeCity(by: cellViewModel.cityCode)
+            action(true)
+        })
+        action.image = UIImage(systemName: "trash.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+        action.backgroundColor = .systemRed.withAlphaComponent(0)
+        
+        return .init(actions: [action])
     }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            setManualUpdate()
+//            let cellViewModel = cellViewModels[indexPath.row]
+//            viewModel.removeCity(by: cellViewModel.cityCode)
+//            cellViewModels.remove(at: indexPath.row)
+//            tableView.beginUpdates()
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//            tableView.endUpdates()
+//        }
+//    }
 }
 
 private extension CityWeather {
