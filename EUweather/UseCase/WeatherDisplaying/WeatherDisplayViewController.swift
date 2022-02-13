@@ -136,18 +136,6 @@ extension WeatherDisplayViewController: UITableViewDelegate {
         
         return .init(actions: [action])
     }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            setManualUpdate()
-//            let cellViewModel = cellViewModels[indexPath.row]
-//            viewModel.removeCity(by: cellViewModel.cityCode)
-//            cellViewModels.remove(at: indexPath.row)
-//            tableView.beginUpdates()
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            tableView.endUpdates()
-//        }
-//    }
 }
 
 private extension CityWeather {
